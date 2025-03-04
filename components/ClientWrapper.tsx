@@ -1,5 +1,7 @@
+"use client";
 import { ClerkProvider } from "@clerk/nextjs";
-import { SchematicProvider } from "@schematica/schematic-react";
+import { SchematicProvider } from "@schematichq/schematic-react";
+import SchematicWrapped from "./SchematicWrapped";
 
 export default function ClientWrapper({
   children,
@@ -7,7 +9,7 @@ export default function ClientWrapper({
   children: React.ReactNode;
 }) {
   const schematicPubKey = process.env.NEXT_PUBLIC_SCHEMATIC_PUBLISHABLE_KEY;
-  
+
   if (!schematicPubKey) {
     throw new Error(
       "No Schematic Publishable Key found. Please add it to your .env.local file."
@@ -17,7 +19,7 @@ export default function ClientWrapper({
   return (
     <ClerkProvider>
       <SchematicProvider publishableKey={schematicPubKey}>
-        {children}
+        <SchematicWrapped>{children}</SchematicWrapped>
       </SchematicProvider>
     </ClerkProvider>
   );
