@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.2",
+    "@radix-ui/react-progress": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.2",
     "@schematichq/schematic-components": "^0.4.7",
     "@schematichq/schematic-react": "^1.2.4",

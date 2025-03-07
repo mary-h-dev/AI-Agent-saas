@@ -12,4 +12,4 @@ function ManagePlan() {
   );
 }
 
-export default ManagePlan
+export default ManagePlan;
