@@ -6,6 +6,7 @@ import YouTubeVideoDetails from "@/components/YouTubeVideoDetails";
 import ThumbnailGeneration from "@/components/ThumbnailGeneration";
 import TitleGeneration from "@/components/TitleGeneration";
 import Transcription from "@/components/Transcription";
+import AiAgentChat from "@/components/AiAgentChat";
 
 function AnalysisPage() {
   const params = useParams<{ videoId: string }>();
@@ -32,8 +33,7 @@ function AnalysisPage() {
 
         {/* Right Side */}
         <div className="order-1 lg:order-2 lg:sticky lg:top-20 h-[500px] md:h-[calc(100vh-6rem)]">
-          <h2 className="text-xl font-semibold">AI Agent Chat Section</h2>
-          <p>Chat</p>
+          <AiAgentChat videoId={videoId} />
         </div>
       </div>
     </div>
