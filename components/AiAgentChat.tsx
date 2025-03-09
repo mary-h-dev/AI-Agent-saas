@@ -111,15 +111,15 @@ function AIAgentChat({ videoId }: { videoId: string }) {
                           <p className="font-medium text-xs">
                             {formatToolInvocation(part as ToolPart)}
                           </p>
-                          {/* {(part as ToolPart).toolInvocation.result && (
-                            <pre className="text-xs bg-white/75 p-2 rounded overflow-auto max-w-[40%]">
+                          {(part as ToolPart).toolInvocation.result && (
+                            <pre className="text-xs bg-white/75 p-2 rounded overflow-auto max-h-[200px] ">
                               {JSON.stringify(
                                 (part as ToolPart).toolInvocation.result,
                                 null,
                                 2
                               )}
                             </pre>
-                          )} */}
+                          )}
                         </div>
                       ) : null
                     )}
