@@ -4,6 +4,10 @@ import { currentUser } from "@clerk/nextjs/server";
 import { Innertube } from "youtubei.js";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "@/convex/_generated/api";
+import { client } from "@/lib/schematic";
+import { featureFlagEvents, FeatureFlag } from "@/features/flags";
+
+
 
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -46,16 +50,19 @@ async function fetchTranscript(videoId: string): Promise<TranscriptEntry[]> {
 }
 
 export async function getYoutubeTranscript(videoId: string) {
-  console.log("Fetching current user...");
+  console.log("🔍 Starting YouTube transcript fetch process...");
+  console.log("📹 Video ID:", videoId);
+  
+  console.log("👤 Fetching current user...");
   const user = await currentUser();
-  console.log("Current user:", user);
+  console.log("👤 Current user:", user);
 
   if (!user?.id) {
-    console.error("User not found");
+    console.error("❌ User not found - Authentication required");
     throw new Error("User not found");
   }
 
-  //for savinfg in data base or retriving from data base
+  console.log("🔍 Checking database for existing transcript...");
   const existingTranscript = await convex.query(
     api.transcript.getTranscriptByVideoId,
     {
@@ -64,7 +71,7 @@ export async function getYoutubeTranscript(videoId: string) {
     }
   );
   if (existingTranscript) {
-    console.log("Transcript already exists in the database");
+    console.log("✅ Found existing transcript in database");
     return {
       transcript: existingTranscript.transcript,
       cache:
@@ -73,15 +80,28 @@ export async function getYoutubeTranscript(videoId: string) {
   }
 
   try {
-    //fetching transcript
+    console.log("🎯 No existing transcript found, fetching from YouTube...");
     const transcript = await fetchTranscript(videoId);
-    //saving transcript in the database
+    
+    console.log("💾 Saving transcript to database...");
     await convex.mutation(api.transcript.storeTranscript, {
       videoId,
       userId: user.id,
       transcript,
     });
-
+    
+    console.log("📊 Tracking transcription event...");
+    await client.track({
+        event: featureFlagEvents[FeatureFlag.TRANSCRIPTION].event,
+        company: {
+            id: user.id,
+        },
+        user: {
+            id: user.id,
+        },
+    });
+    
+    console.log("✅ Transcript process completed successfully");
     return {
       transcript,
       cache:
@@ -89,6 +109,7 @@ export async function getYoutubeTranscript(videoId: string) {
     };
   } catch (error) {
     console.error("❌ Error fetching transcript:", error);
+    console.log("⚠️ Returning empty transcript due to error");
 
     return {
       transcript: [],
