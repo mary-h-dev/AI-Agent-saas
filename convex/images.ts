@@ -24,3 +24,31 @@ export const getImages = query({
     return imageUrls;
   },
 });
+
+/**
+ * Generate an upload URL (برای فرستادن فایل به Convex storage)
+ */
+export const generateUploadUrl = mutation(async (ctx) => {
+  return await ctx.storage.generateUploadUrl();
+});
+
+/**
+ *  Store the uploaded image metadata in database
+ */
+export const storeImage = mutation({
+  args: {
+    storageId: v.id("_storage"),
+    videoId: v.string(),
+    userId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    // store image metadata in database
+    const imageId = await ctx.db.insert("images", {
+      storageId: args.storageId,
+      videoId: args.videoId,
+      userId: args.userId,
+    });
+
+    return imageId;
+  },
+});

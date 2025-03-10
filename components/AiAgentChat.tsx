@@ -33,6 +33,7 @@ function AIAgentChat({ videoId }: { videoId: string }) {
     handleInputChange,
     handleSubmit: originalHandleSubmit,
     append,
+    status,
   } = useChat({
     api: "/api/chat/openai",
     maxSteps: 5,
@@ -220,17 +221,29 @@ function AIAgentChat({ videoId }: { videoId: string }) {
             <input
               className="flex-1 px-4 py-2 text-sm border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               type="text"
-              placeholder="Enter a question..."
+              placeholder={
+                !isVideoAnalysisEnabled
+                  ? "Upgrade to ask anything about your video"
+                  : "Ask anything abut your video"
+              }
               value={input}
               onChange={handleInputChange}
-              disabled={isLoading}
+              disabled={
+                status === "streaming" ||
+                status === "submitted" ||
+                !isVideoAnalysisEnabled
+              }
             />
             <Button
               type="submit"
               className="px-4 py-2 bg-blue-500 text-white text-sm rounded-full hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={isLoading || !input.trim()}
             >
-              {isLoading ? "Sending..." : "Send"}
+              {status === "streaming"
+                ? "AI is replying..."
+                : status === "submitted"
+                ? "AI is thinking..."
+                : "Send"}
             </Button>
           </form>
           <div className="flex gap-2">
