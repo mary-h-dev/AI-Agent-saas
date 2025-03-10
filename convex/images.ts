@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
+// Get all images for a specific user and video
 export const getImages = query({
   args: {
     userId: v.string(),
@@ -25,16 +26,13 @@ export const getImages = query({
   },
 });
 
-/**
- * Generate an upload URL (برای فرستادن فایل به Convex storage)
- */
+
+// Generate an upload URL (for sending files to Convex storage)
 export const generateUploadUrl = mutation(async (ctx) => {
   return await ctx.storage.generateUploadUrl();
 });
 
-/**
- *  Store the uploaded image metadata in database
- */
+// Store the uploaded image metadata in database
 export const storeImage = mutation({
   args: {
     storageId: v.id("_storage"),
@@ -52,3 +50,25 @@ export const storeImage = mutation({
     return imageId;
   },
 });
+
+// Get the image URL for a specific user and video
+export const getImage = query({
+  args: {
+    userId: v.string(),
+    videoId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const image = await ctx.db
+      .query("images")
+      .withIndex("by_user_and_video", (q) =>
+        q.eq("userId", args.userId).eq("videoId", args.videoId)
+      )
+      .first();
+
+    if (!image) {
+      return null;
+    }
+
+    return await ctx.storage.getUrl(image.storageId);
+  },
+})
