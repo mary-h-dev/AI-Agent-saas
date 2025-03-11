@@ -2,11 +2,12 @@
 
 import { Message, useChat } from "@ai-sdk/react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useSchematicFlag } from "@schematichq/schematic-react";
 import { FeatureFlag } from "@/features/flags";
-import { ImageIcon, LetterText, PenIcon } from "lucide-react";
+import { BotIcon, ImageIcon, LetterText, PenIcon } from "lucide-react";
+import { toast } from "sonner";
 
 interface ToolInvocation {
   toolCallId: string;
@@ -58,8 +59,6 @@ function AIAgentChat({ videoId }: { videoId: string }) {
 
   console.log("Chat messagessssssss:", messages);
 
-
-
   const isScriptGenerationEnabled = useSchematicFlag(
     FeatureFlag.SCRIPT_GENERATION
   );
@@ -74,6 +73,37 @@ function AIAgentChat({ videoId }: { videoId: string }) {
 
   const isVideoAnalysisEnabled = useSchematicFlag(FeatureFlag.ANALYSE_VIDEO);
 
+  useEffect(() => {
+    let toastId: string | number = "";
+
+    switch (status) {
+      case "submitted":
+        toastId = toast("Agent is thinking...", {
+          icon: <BotIcon className="w-4 h-4" />,
+        });
+        break;
+
+      case "streaming":
+        toastId = toast("Agent is replying...", {
+          icon: <BotIcon className="w-4 h-4" />,
+        });
+        break;
+
+      case "error":
+        toastId = toast("Whoops! Something went wrong, please try again.", {
+          icon: <BotIcon className="w-4 h-4" />,
+        });
+        break;
+
+      case "ready":
+        if (toastId) {
+          toast.dismiss(toastId);
+        }
+        break;
+    }
+  }, [status]);
+
+  
   const generateScript = async () => {
     const randomId = Math.random().toString(36).substring(2, 15);
 
@@ -81,7 +111,7 @@ function AIAgentChat({ videoId }: { videoId: string }) {
       id: `generate-script-${randomId}`,
       role: "user",
       content: `
-        Generate a step-by-step shooting script for this video that I can use on my own channel 
+        Generate a step-by-step shooting script for this video basd on the transcript that I can use on my own channel 
         to produce a video that is similar to this one. 
         Don't do any other steps such as generating an image, just generate the script only!
       `,
@@ -89,9 +119,6 @@ function AIAgentChat({ videoId }: { videoId: string }) {
 
     append(userMessage);
   };
-
-
-
 
   const generateImage = async () => {
     const randomId = Math.random().toString(36).substring(2, 15);
@@ -107,9 +134,6 @@ function AIAgentChat({ videoId }: { videoId: string }) {
     append(userMessage);
   };
 
-
-
-
   const generateTitle = async () => {
     const randomId = Math.random().toString(36).substring(2, 15);
 
@@ -123,8 +147,6 @@ function AIAgentChat({ videoId }: { videoId: string }) {
 
     append(userMessage);
   };
-
-
 
   return (
     <div className="flex flex-col h-full">
@@ -253,7 +275,6 @@ function AIAgentChat({ videoId }: { videoId: string }) {
                 : status === "submitted"
                 ? "AI is thinking..."
                 : "Send"}
-          
             </Button>
           </form>
           <div className="flex gap-2">
