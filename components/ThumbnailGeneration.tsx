@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
+
 function ThumbnailGeneration({ videoId }: { videoId: string }) {
   const { user } = useUser();
   const images = useQuery(api.images.getImages, {
@@ -29,7 +30,7 @@ function ThumbnailGeneration({ videoId }: { videoId: string }) {
           (image) =>
             image.url && (
               <div
-                key={image.id}
+                key={image._id}
                 className="flex-none w-[200px] h-[110px] rounded-lg overflow-hidden"
               >
                 <Image

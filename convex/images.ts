@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
+
 // Get all images for a specific user and video
 export const getImages = query({
   args: {
@@ -27,6 +28,7 @@ export const getImages = query({
 });
 
 
+
 // Generate an upload URL (for sending files to Convex storage)
 export const generateUploadUrl = mutation(async (ctx) => {
   return await ctx.storage.generateUploadUrl();
@@ -50,6 +52,7 @@ export const storeImage = mutation({
     return imageId;
   },
 });
+
 
 // Get the image URL for a specific user and video
 export const getImage = query({

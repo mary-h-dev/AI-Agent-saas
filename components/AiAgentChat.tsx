@@ -13,7 +13,6 @@ interface ToolInvocation {
   toolName: string;
   result?: Record<string, unknown>;
 }
-
 interface ToolPart {
   type: "tool-invocation";
   toolInvocation: ToolInvocation;
@@ -57,7 +56,9 @@ function AIAgentChat({ videoId }: { videoId: string }) {
     originalHandleSubmit(e);
   };
 
-  console.log("Chat messages:", messages);
+  console.log("Chat messagessssssss:", messages);
+
+
 
   const isScriptGenerationEnabled = useSchematicFlag(
     FeatureFlag.SCRIPT_GENERATION
@@ -89,6 +90,9 @@ function AIAgentChat({ videoId }: { videoId: string }) {
     append(userMessage);
   };
 
+
+
+
   const generateImage = async () => {
     const randomId = Math.random().toString(36).substring(2, 15);
 
@@ -96,12 +100,15 @@ function AIAgentChat({ videoId }: { videoId: string }) {
       id: `generate-image-${randomId}`,
       role: "user",
       content: `
-        Generate a thumbnail for this video.
+        Generate an image related to this video.
       `,
     };
 
     append(userMessage);
   };
+
+
+
 
   const generateTitle = async () => {
     const randomId = Math.random().toString(36).substring(2, 15);
@@ -116,6 +123,8 @@ function AIAgentChat({ videoId }: { videoId: string }) {
 
     append(userMessage);
   };
+
+
 
   return (
     <div className="flex flex-col h-full">
@@ -186,7 +195,7 @@ function AIAgentChat({ videoId }: { videoId: string }) {
                   </div>
                 ) : (
                   <>
-                    <p className="text-xs font-bold">User Message</p>
+                    {/* <p className="text-xs font-bold">User Message</p> */}
                     <div className="prose prose-sm max-w-none text-white">
                       <ReactMarkdown>{m.content}</ReactMarkdown>
                     </div>
@@ -244,6 +253,7 @@ function AIAgentChat({ videoId }: { videoId: string }) {
                 : status === "submitted"
                 ? "AI is thinking..."
                 : "Send"}
+          
             </Button>
           </form>
           <div className="flex gap-2">

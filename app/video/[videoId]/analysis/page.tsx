@@ -81,7 +81,7 @@ function AnalysisPage() {
           <ThumbnailGeneration videoId={videoId} />
           <TitleGeneration videoId={videoId} />
           <Transcription videoId={videoId} />
-          <p>Cool stuff</p>
+
         </div>
 
         {/* Right Side */}
