@@ -7,6 +7,7 @@ import { Copy } from "lucide-react";
 import { FeatureFlag } from "@/features/flags";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 
 function TitleGenerations({ videoId }: { videoId: string }) {
   const { user } = useUser();
@@ -18,14 +19,14 @@ function TitleGenerations({ videoId }: { videoId: string }) {
     userId: user?.id ?? "",
   });
 
-  
+
   const { value: isTitleGenerationEnabled } = useSchematicEntitlement(
     FeatureFlag.TITLE_GENERATIONS
   );
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    // toast.success("Copied to clipboard");
+    toast.success("Copied to clipboard");
   };
 
   return (

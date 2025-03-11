@@ -2,7 +2,7 @@
 
 import { Message, useChat } from "@ai-sdk/react";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useSchematicFlag } from "@schematichq/schematic-react";
 import { FeatureFlag } from "@/features/flags";
@@ -26,6 +26,8 @@ const formatToolInvocation = (part: ToolPart) => {
 
 function AIAgentChat({ videoId }: { videoId: string }) {
   const [isLoading, setIsLoading] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const {
     messages,
@@ -74,6 +76,13 @@ function AIAgentChat({ videoId }: { videoId: string }) {
   const isVideoAnalysisEnabled = useSchematicFlag(FeatureFlag.ANALYSE_VIDEO);
 
   useEffect(() => {
+    if (bottomRef.current && messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  useEffect(() => {
     let toastId: string | number = "";
 
     switch (status) {
@@ -103,7 +112,6 @@ function AIAgentChat({ videoId }: { videoId: string }) {
     }
   }, [status]);
 
-  
   const generateScript = async () => {
     const randomId = Math.random().toString(36).substring(2, 15);
 
@@ -154,7 +162,10 @@ function AIAgentChat({ videoId }: { videoId: string }) {
         <h2 className="text-lg font-semibold text-gray-800">AI Agent</h2>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div
+        className="flex-1 overflow-y-auto px-4 py-4"
+        ref={messagesContainerRef}
+      >
         <div className="space-y-6">
           {messages.length === 0 && (
             <div className="flex items-center justify-center h-full min-h-[200px]">
@@ -243,6 +254,8 @@ function AIAgentChat({ videoId }: { videoId: string }) {
               </div>
             </div>
           )}
+
+          <div ref={bottomRef} />
         </div>
       </div>
 
