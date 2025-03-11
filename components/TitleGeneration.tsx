@@ -5,13 +5,20 @@ import Usage from "./Usage";
 import { useSchematicEntitlement } from "@schematichq/schematic-react";
 import { Copy } from "lucide-react";
 import { FeatureFlag } from "@/features/flags";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 function TitleGenerations({ videoId }: { videoId: string }) {
   const { user } = useUser();
 
-  // TODO: Pull from convex db
-  const titles = [];
 
+  // Pull from convex db
+  const titles = useQuery(api.titles.list, {
+    videoId: videoId,
+    userId: user?.id ?? "",
+  });
+
+  
   const { value: isTitleGenerationEnabled } = useSchematicEntitlement(
     FeatureFlag.TITLE_GENERATIONS
   );
@@ -33,7 +40,7 @@ function TitleGenerations({ videoId }: { videoId: string }) {
       <div className="space-y-3 mt-4 max-h-[280px] overflow-y-auto">
         {titles?.map((title) => (
           <div
-            key={title.id}
+            key={title._id}
             className="group relative p-4 rounded-lg border bg-gray-100 hover:border-blue-100 hover:bg-blue-50 transition-all duration-200"
           >
             <div className="flex items-start justify-between gap-4">

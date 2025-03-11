@@ -6,6 +6,9 @@ import fetchTranscript from "@/tools/fetchTranscript";
 import { generateImage } from "@/tools/generateImage";
 import { z } from "zod";
 import { getVideoIdFromUrl } from "@/lib/getVideoIdFromUrl";
+import generateTitle from "@/tools/generateTitle";
+
+
 
 const openai = createOpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -52,6 +55,7 @@ export async function POST(req: Request) {
       ],
       tools: {
         fetchTranscript: fetchTranscript,
+        generateTitle: generateTitle,
         generateImage: generateImage({ videoId, userId: user.id }),
         getVideoDetails: tool({
           description: "Get the details of a YouTube video",
@@ -73,7 +77,7 @@ export async function POST(req: Request) {
             return { videoId };
           },
         }),
-        
+
         
       },
     });
