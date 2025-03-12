@@ -100,7 +100,10 @@ Provides a conversational interface leveraging OpenAI to:
 
 ## Generate Dependency Graph
 
-![graph and relation](./public/dependency-graph.svg)
+<!-- ![graph and relation](./public/dependency-graph.svg) -->
+
+![graph and relation](https://github.com/maryamHabibpourr/AI-Agent-saas/blob/main/public/dependency-graph.svg?raw=true)
+
 
 
 This README provides an overview of the project's capabilities, tech stack, and workflow, ensuring a smooth onboarding experience for developers.
