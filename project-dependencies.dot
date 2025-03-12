@@ -1,0 +1,14 @@
+strict digraph "dependency-cruiser output"{
+    rankdir="LR" splines="true" overlap="false" nodesep="0.16" ranksep="0.18" fontname="Helvetica-bold" fontsize="9" style="rounded,bold,filled" fillcolor="#ffffff" compound="true"
+    node [shape="box" style="rounded, filled" height="0.2" color="black" fillcolor="#ffffcc" fontcolor="black" fontname="Helvetica" fontsize="9"]
+    edge [arrowhead="normal" arrowsize="0.6" penwidth="2.0" color="#00000033" fontname="Helvetica" fontsize="9"]
+
+    subgraph "cluster_app" {label="app" subgraph "cluster_app/api" {label="api" subgraph "cluster_app/api/chat" {label="chat" subgraph "cluster_app/api/chat/claude" {label="claude" "app/api/chat/claude/route.ts" [label=<route.ts> tooltip="route.ts" URL="app/api/chat/claude/route.ts" fillcolor="#ccffcc"] } } } }
+    subgraph "cluster_app" {label="app" subgraph "cluster_app/api" {label="api" subgraph "cluster_app/api/chat" {label="chat" subgraph "cluster_app/api/chat/openai" {label="openai" "app/api/chat/openai/route.ts" [label=<route.ts> tooltip="route.ts" URL="app/api/chat/openai/route.ts" fillcolor="#ccffcc"] } } } }
+    subgraph "cluster_app" {label="app" "app/globals.css" [label=<globals.css> tooltip="globals.css" URL="app/globals.css" ] }
+    subgraph "cluster_app" {label="app" "app/layout.tsx" [label=<layout.tsx> tooltip="layout.tsx" URL="app/layout.tsx" fillcolor="#bbfeff"] }
+    "app/layout.tsx" -> "app/globals.css"
+    subgraph "cluster_app" {label="app" subgraph "cluster_app/manage-plan" {label="manage-plan" "app/manage-plan/page.tsx" [label=<page.tsx> tooltip="page.tsx" URL="app/manage-plan/page.tsx" fillcolor="#ccffcc"] } }
+    subgraph "cluster_app" {label="app" "app/page.tsx" [label=<page.tsx> tooltip="page.tsx" URL="app/page.tsx" fillcolor="#ccffcc"] }
+    subgraph "cluster_app" {label="app" subgraph "cluster_app/video" {label="video" subgraph "cluster_app/video/[videoId]" {label="[videoId]" subgraph "cluster_app/video/[videoId]/analysis" {label="analysis" "app/video/[videoId]/analysis/page.tsx" [label=<page.tsx> tooltip="page.tsx" URL="app/video/[videoId]/analysis/page.tsx" fillcolor="#ccffcc"] } } } }
+}
