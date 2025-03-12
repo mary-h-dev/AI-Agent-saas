@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 
 function Header() {
   return (
-    <header className="sticky top-0 left-0 right-0 px-4 md:px-0 bg-white/80 backdrop-blur-sm border-b border-gray-200 z-50">
+    <header className="sticky top-0 left-0 right-0 px-4 md:px-0 bg-gradient-to-r from-black to-blue-800 backdrop-blur-sm border-b border-gray-700 z-50">
       <div className="container mx-auto">
         <div className="flex items-center justify-between h-18">
           {/* Left */}
@@ -25,7 +25,7 @@ function Header() {
               <Link href="/manage-plan">
                 <Button
                   variant="outline"
-                  className="p-4 bg-gradient-to-r from-blue-600 to-blue-400 text-transparent bg-clip-text"
+                  className="text-white hover:text-gray-400 p-4 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text"
                 >
                   Manage Plan
                 </Button>

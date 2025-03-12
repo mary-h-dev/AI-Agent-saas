@@ -32,7 +32,7 @@ export const steps = [
       description:
         "Get deep insights into your video content with our advanced AI analysis. Understand viewer engagement and content quality.",
       icon: Brain,
-      iconBg: "bg-blue-100",
+      iconBg: "bg-transparent",
       iconColor: "text-blue-600",
     },
     {
@@ -40,7 +40,7 @@ export const steps = [
       description:
         "Get accurate transcriptions of your videos. Perfect for creating subtitles, blog posts, or repurposing content.",
       icon: MessageSquare,
-      iconBg: "bg-green-100",
+      iconBg: "bg-transparent",
       iconColor: "text-green-600",
     },
     {
@@ -48,7 +48,7 @@ export const steps = [
       description:
         "Generate eye-catching thumbnails using AI. Boost your click-through rates with compelling visuals.",
       icon: ImageIcon,
-      iconBg: "bg-purple-100",
+      iconBg: "bg-transparent",
       iconColor: "text-purple-600",
     },
     {
@@ -56,7 +56,7 @@ export const steps = [
       description:
         "Create attention-grabbing, SEO-optimized titles for your videos using AI. Maximize views with titles that resonate with your audience.",
       icon: MessageSquare,
-      iconBg: "bg-yellow-100",
+      iconBg: "bg-transparent",
       iconColor: "text-yellow-600",
     },
     {
@@ -64,7 +64,7 @@ export const steps = [
       description:
         "Get detailed, step-by-step instructions to recreate viral videos. Learn shooting techniques, angles, and editing tips from successful content.",
       icon: Video,
-      iconBg: "bg-red-100",
+      iconBg: "bg-transparent",
       iconColor: "text-red-600",
     },
     {
@@ -72,7 +72,7 @@ export const steps = [
       description:
         "Engage in deep conversations about your content strategy, brainstorm ideas, and unlock new creative possibilities with your AI agent companion.",
       icon: Sparkles,
-      iconBg: "bg-orange-100",
+      iconBg: "bg-transparent",
       iconColor: "text-orange-600",
     },
   ];

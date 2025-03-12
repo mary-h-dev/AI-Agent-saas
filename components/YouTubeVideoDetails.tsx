@@ -26,7 +26,7 @@ function YoutubeVideoDetails({ videoId }: { videoId: string }) {
   );
 
   return (
-    <div className="@container bg-white rounded-xl">
+    <div className="@container bg-black rounded-xl">
       <div className="flex flex-col gap-8">
         {/* Video Thumbnail */}
         <div className="flex-shrink-0">
@@ -41,7 +41,7 @@ function YoutubeVideoDetails({ videoId }: { videoId: string }) {
 
         {/* Video Details */}
         <div className="flex-grow space-y-4">
-          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight line-clamp-2">
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-200 leading-tight line-clamp-2">
             {video.title}
           </h1>
 
@@ -54,10 +54,10 @@ function YoutubeVideoDetails({ videoId }: { videoId: string }) {
               height={48}
               className="w-10 h-10 md:w-12 md:h-12 rounded-full border-2 border-gray-100"
             />
-            <p className="text-base md:text-lg font-semibold text-gray-900">
+            <p className="text-base md:text-lg font-semibold text-gray-200">
               {video.channel.title}
             </p>
-            <p className="text-sm md:text-base text-gray-600">
+            <p className="text-sm md:text-base text-gray-200">
               {video.channel.subscribers} subscribers
             </p>
           </div>
@@ -65,36 +65,36 @@ function YoutubeVideoDetails({ videoId }: { videoId: string }) {
 
         {/* Video Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-          <div className="bg-gray-50 rounded-lg p-3 transition-all duration-300 hover:bg-gray-100">
+          <div className="bg-gray-900 rounded-lg p-3 transition-all duration-300 hover:bg-gray-700">
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-4 h-4 text-gray-600" />
-              <p className="text-sm text-gray-600">Published</p>
+              <Calendar className="w-4 h-4 text-gray-200" />
+              <p className="text-sm text-gray-200">Published</p>
             </div>
-            <p className="font-medium text-gray-900">
+            <p className="font-medium text-gray-200">
               {new Date(video.publishedAt).toLocaleDateString()}
             </p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-3 transition-all duration-300 hover:bg-gray-100">
+          <div className="bg-gray-900 rounded-lg p-3 transition-all duration-300 hover:bg-gray-700">
             <div className="flex items-center gap-2 mb-1">
-              <Eye className="w-4 h-4 text-gray-600" />
-              <p className="text-sm text-gray-600">Views</p>
+              <Eye className="w-4 h-4 text-gray-200" />
+              <p className="text-sm text-gray-200">Views</p>
             </div>
-            <p className="font-medium text-gray-900">{video.views}</p>
+            <p className="font-medium text-gray-200">{video.views}</p>
           </div>
-          <div className="bg-gray-50 rounded-lg p-3 transition-all duration-300 hover:bg-gray-100">
+          <div className="bg-gray-900 rounded-lg p-3 transition-all duration-300 hover:bg-gray-700">
             <div className="flex items-center gap-2 mb-1">
-              <ThumbsUp className="w-4 h-4 text-gray-600" />
-              <p className="text-sm text-gray-600">Likes</p>
+              <ThumbsUp className="w-4 h-4 text-gray-200" />
+              <p className="text-sm text-gray-200">Likes</p>
             </div>
-            <p className="font-medium text-gray-900">{video.likes}</p>
+            <p className="font-medium text-gray-200">{video.likes}</p>
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-3 transition-all duration-300 hover:bg-gray-100">
+          <div className="bg-gray-900 rounded-lg p-3 transition-all duration-300 hover:bg-gray-700">
             <div className="flex items-center gap-2 mb-1">
-              <MessageCircle className="w-4 h-4 text-gray-600" />
-              <p className="text-sm text-gray-600">Comments</p>
+              <MessageCircle className="w-4 h-4 text-gray-200" />
+              <p className="text-sm text-gray-200">Comments</p>
             </div>
-            <p className="font-medium text-gray-900">{video.comments}</p>
+            <p className="font-medium text-gray-200">{video.comments}</p>
           </div>
         </div>
       </div>

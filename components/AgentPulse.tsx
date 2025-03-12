@@ -1,6 +1,6 @@
 type AgentPulseProps = {
   size?: "small" | "medium" | "large";
-  color?: "blue" | "green" | "purple";
+  color?: "blue" | "green" | "orange";
 };
 
 function AgentPulse({ size = "medium", color = "blue" }: AgentPulseProps) {
@@ -13,7 +13,7 @@ function AgentPulse({ size = "medium", color = "blue" }: AgentPulseProps) {
   const colorClasses = {
     blue: "bg-blue-500 shadow-[0_0_8px_4px_rgba(59,130,246,0.5)]",
     green: "bg-green-500 shadow-[0_0_8px_4px_rgba(34,197,94,0.5)]",
-    purple: "bg-purple-500 shadow-[0_0_8px_4px_rgba(168,85,247,0.5)]",
+    orange: "bg-orange-500 shadow-[0_0_8px_4px_rgba(168,85,247,0.5)]",
   };
 
   return (

@@ -96,9 +96,9 @@ function Usage({
   const progressColor = getProgressColor(progress);
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+    <div className="bg-black rounded-2xl shadow-sm border border-gray-100 p-6">
       <div className="flex justify-between items-center mb-4 gap-4">
-        <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
+        <h2 className="text-xl font-semibold text-gray-200">{title}</h2>
         <div className="px-4 py-2 bg-gray-50 rounded-lg">
           <span className="font-medium text-gray-700">{featureUsage}</span>
           <span className="text-gray-400 mx-2">/</span>

@@ -30,7 +30,7 @@ function TitleGenerations({ videoId }: { videoId: string }) {
   };
 
   return (
-    <div className="p-4 border border-gray-200 rounded-xl bg-white shadow-sm">
+    <div className="p-4 border border-gray-200 rounded-xl bg-black shadow-sm">
       <div className="min-w-[52]">
         <Usage
           featureFlag={FeatureFlag.TITLE_GENERATIONS}
@@ -42,10 +42,10 @@ function TitleGenerations({ videoId }: { videoId: string }) {
         {titles?.map((title) => (
           <div
             key={title._id}
-            className="group relative p-4 rounded-lg border bg-gray-100 hover:border-blue-100 hover:bg-blue-50 transition-all duration-200"
+            className="group relative p-4 rounded-lg border bg-gray-600 hover:border-blue-100 hover:bg-gray-800 transition-all duration-200"
           >
             <div className="flex items-start justify-between gap-4">
-              <p className="text-sm text-gray-900 leading-relaxed">
+              <p className="text-sm text-gray-200 leading-relaxed">
                 {title.title}
               </p>
             </div>

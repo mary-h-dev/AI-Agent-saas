@@ -44,7 +44,7 @@ function Transcription({ videoId }: { videoId: string }) {
 
 
   return (
-    <div className="border p-4 pb-0 rounded-xl gap-4 flex flex-col">
+    <div className="border p-4 pb-0 rounded-xl gap-4 flex flex-col bg-black">
       <Usage featureFlag={FeatureFlag.TRANSCRIPTION} title="Transcription" />
 
       {/* Transcription */}
@@ -56,7 +56,7 @@ function Transcription({ videoId }: { videoId: string }) {
                 <span className="text-sm text-gray-400 min-w-[50px]">
                   {entry.timestamp}
                 </span>
-                <p className="text-sm text-gray-700">{entry.text}</p>
+                <p className="text-sm text-gray-200">{entry.text}</p>
               </div>
             ))
           ) : (
