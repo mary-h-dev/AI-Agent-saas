@@ -8,6 +8,7 @@ import { FeatureFlag } from "@/features/flags";
 import { BotIcon, ImageIcon, LetterText, PenIcon } from "lucide-react";
 import { toast } from "sonner";
 
+
 interface ToolInvocation {
   toolCallId: string;
   toolName: string;
@@ -260,8 +261,8 @@ function AIAgentChat({ videoId }: { videoId: string }) {
           ))}
 
           {isLoading && (
-            <div className="w-[20%] p-3 rounded-lg bg-gray-50 mr-6">
-              <p className="text-sm font-semibold mb-1">AI Assistant</p>
+            <div className="w-[40%] p-3 rounded-lg bg-gray-50 mr-6">
+              <p className="text-sm font-semibold mb-1">AI Agent</p>
               <div className="flex space-x-1">
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                 <div
@@ -312,7 +313,7 @@ function AIAgentChat({ videoId }: { videoId: string }) {
             </Button>
           </form>
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap md:flex-nowrap gap-2">
             <button
               className="text-white text-xs xl:text-sm w-full flex items-center justify-center gap-2 py-2 px-4 bg-gray-900 hover:bg-gray-700 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               onClick={generateScript}

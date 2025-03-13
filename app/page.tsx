@@ -22,19 +22,18 @@ export default function Home() {
               Transform your video content with AI-powered analysis,
               transcription, and insights. Get started in seconds.
             </p>
+
             <div className="h-[25rem] w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
               <div className="relative z-20 w-full h-full">
                 <YoutubeVideoForm />
               </div>
 
               <div className="w-[40rem] relative">
-                {/* Gradients */}
                 <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
                 <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
                 <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
                 <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
 
-                {/* Core component */}
                 <SparklesCore
                   background="transparent"
                   minSize={0.4}
@@ -44,7 +43,6 @@ export default function Home() {
                   particleColor="#FFFFFF"
                 />
 
-                {/* Radial Gradient to prevent sharp edges */}
                 <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
               </div>
             </div>
@@ -74,7 +72,9 @@ export default function Home() {
                   <h3 className=" text-gray-400 text-xl font-semibold mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-white font-light text-sm">{feature.description}</p>
+                  <p className="text-white font-light text-sm">
+                    {feature.description}
+                  </p>
                 </div>
               );
             })}
@@ -99,8 +99,12 @@ export default function Home() {
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-gray-400 text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-white font-light text-sm">{step.description}</p>
+                  <h3 className="text-gray-400 text-xl font-semibold mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-white font-light text-sm">
+                    {step.description}
+                  </p>
                 </div>
               );
             })}
