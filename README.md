@@ -6,8 +6,10 @@ A lightweight and powerful AI agent built with Vercel AI SDK, designed to analyz
 - Vercel AI SDK
 - OpenAI (GPT-4)
 - Claude-ai
+- Convex
 - YouTube Transcript API
 - React / Next.js
+- Clerk
 
 ### 🔍 Features
 - Accepts public YouTube video URLs
