@@ -125,6 +125,9 @@ function AIAgentChat({ videoId }: { videoId: string }) {
 
 
 
+
+  
+
   const generateScript = async () => {
     const randomId = Math.random().toString(36).substring(2, 15);
 
