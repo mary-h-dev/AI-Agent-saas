@@ -5,6 +5,7 @@ A lightweight and powerful AI agent built with Vercel AI SDK, designed to analyz
 ### ⚙️ Tech Stack
 - Vercel AI SDK
 - OpenAI (GPT-4)
+- Claude-ai
 - YouTube Transcript API
 - React / Next.js
 
